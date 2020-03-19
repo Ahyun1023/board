@@ -4,8 +4,8 @@ module.exports = (()=> {
             host: 'localhost',
             port: 3306,
             user: 'root',
-            password: 'fkrtmgkswks',
-            database: 'blog'
+            password: '*************',
+            database: 'board'
         },
 
         real: { //실 서버용
