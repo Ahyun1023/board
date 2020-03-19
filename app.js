@@ -14,7 +14,6 @@ const filestore = require('session-file-store')(session);
 const log_routes = require('./routes/log_route');
 const search_routes = require('./routes/search_route');
 const post_routes = require('./routes/post_route');
-const comment_routes = require('./routes/comment_route');
 const user_routes = require('./routes/user_route');
 
 app.set('port', process.env.PORT || 3000);
@@ -52,37 +51,21 @@ app.use(session({
 }));
 
 router = express.Router();
-
 router.route('/login').post(user_routes.login);
-
 router.route('/signUp').post(log_routes.signUp);
-
 router.route('/signOut').post(log_routes.signOut);
-
 router.route('/logout').post(log_routes.logout);
-
 router.route('/main').post(post_routes.go_main_page);
-
 router.route('/update').get(user_routes.user_update_page);
-
 router.route('/update/post/:id').post(post_routes.post_update_page);
-
 router.route('/post/:id').post(post_routes.show_post);
-
 router.route('/search/mypost').post(search_routes.search_mypost);
-
 router.route('/search').get(search_routes.search_post);
-
 router.route('/').post(upload.single('photo'), post_routes.write_post);
-
 router.route('/update').post(user_routes.user_update);
-
 router.route('/update/:id').post(post_routes.post_update);
-
 router.route('/delete_post').post(post_routes.delete_post);
-
-router.route('/comment').post(comment_routes.write_comment);
-
+router.route('/comment').post(post_routes.write_comment);
 app.use('/', router);
 
 http.createServer(app).listen(app.get('port'), function(){
