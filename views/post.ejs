@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post[0].title %></title>
+</head>
+<body>
+    <h1 style="float: left; margin: 1%;"><%- post[0].title %></h1>
+    <br>
+    <p style="float: left; margin: 0.7%;">조회수: <%= post[0].view %></p>
+
+    <% if(name == post[0].name) { %>
+    <form action="/update/post/<%- post[0].id %>" method="POST">
+        <button type="submit" style="margin-top: 0.7%; float: left; margin-right: 2%;">게시물 수정</button>
+    </form>
+    <form action="/delete_post" method="POST">
+        <button type="submit" style="float: left; margin-right: 2%; margin-top: 0.8%;">게시물 삭제</button>
+    </form>
+    <% } %>
+    <form action="/main" method="POST">
+        <button type="submit" style="margin-top: 0.8%;">뒤로가기</button>
+    </form>
+
+    <br><br><br><hr>
+    <p><%- post[0].content %></p>
+    <img src='<%- post[0].photo %>'>
+    <hr>
+    <h3>댓글</h3>
+    <form action="/comment" method="POST">
+    <input type="text" placeholder="댓글 작성" style="float: left; margin: 3px; width: 25%;" name="content">
+    <button type="submit">작성</button>
+    </form>
+    <hr><br>
+    <% if(comment != ''){ %>
+        <% for(let i = 0; i < comment.length; i++) { %>
+            <p style="float: left;"><%- comment[i].name %>: &nbsp;</p>
+            <p><%- comment[i].content %> &nbsp;</p>
+            <p style="font-size: 5px; color: gray; float: left;"><%- moment(comment[i].date).format('YYYY-MM-DD hh:mm:ss') %> &nbsp;</p>
+            <br>
+            <hr>
+            <br>
+        <% } %>
+    <% } else{ %>
+        <p>댓글이 없습니다.</p>
+    <% } %>
+</body>
+</html>

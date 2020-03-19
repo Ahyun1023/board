@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+    <style>
+        .post {
+            background-color: white;
+            font-size: 15px;
+            width: 20%;
+            cursor: pointer;
+        }
+        .title{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>총 <%= count %>개 검색</h1>
+    <form action="/main" method="POST">
+        <button type="submit">뒤로가기</button>
+    </form>
+    <br><hr>
+    <% for(let i = 0; i < results.length; i++) { %>
+        <form action="/post/<%- results[i].id %>" method="POST">
+            <button type="submit" class="post" style="float: left;"><p class="title"><%- results[i].title %></p></button>
+            <p style="padding-left: 1%; float: left;">조회수: <%- results[i].view %></p>
+            <p style="padding-left: 2%; float: left;">작성자: <%- results[i].name %></p>
+            <p style="padding-left: 33%; padding-bottom: 0.5%;">작성 날짜: <%- moment(results[i].date).format('YYYY-MM-DD hh:mm:ss') %></p>
+            <br><hr>
+        </form>
+    <% } %>
+</body>
+</html>

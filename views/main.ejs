@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인화면</title>
+    <style>
+        .post {
+            background-color: white;
+            font-size: 15px;
+            width: 20%;
+            cursor: pointer;
+        }
+        .title{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="float: left; margin: 0.5%;">안녕하세요, <%= name %></h1>
+    <button type="submit" style="float: left; margin: 1.5%;" onclick="location.href='/public/write_post.html'">게시물 작성</button>
+
+    <form action="/search/mypost" method="POST">
+            <button type="submit" style="float: left; margin-top: 1.5%;">내가 쓴 게시물</button>
+    </form>
+
+    <form action="/update" method="GET">
+        <button type="submit" style="float: left; margin: 1.5%;">개인정보 수정</button>
+    </form>
+    <br>
+
+    <form action="/logout" method="POST">
+        <button type="submit" style="float: left; margin: 1.5%; margin-top: 0.5%;">로그아웃</button>
+    </form>
+
+    <input type="button" value="회원 탈퇴" onclick="location.href='/public/signOut.html'" style="margin: 1.5%; margin-top: 0.5%;">
+
+    <form action="/search" method="GET">
+        <h3>게시물 검색</h3>
+        <select name="options">
+            <option value="title">제목</option>
+            <option value="name">글쓴이</option>
+        </select>
+        <input type="text" name="search">
+        <button type="submit">검색</button>
+    </form>
+
+    <h2>전체 게시물</h2>
+    <hr>
+
+    <% for(let i = 0; i < result.length; i++) { %>
+        <form action="/post/<%- result[i].id %>" method="POST">
+                <button type="submit" class="post" style="float: left;"><p class="title"><%- result[i].title %></p></button>
+                <p style="padding-left: 1%; float: left;">조회수: <%- result[i].view %></p>
+                <p style="padding-left: 2%; float: left;">작성자: <%- result[i].name %></p>
+                <p style="padding-left: 33%; padding-top: 0.9%;">작성 날짜: <%- moment(result[i].date).format('YYYY-MM-DD hh:mm:ss') %></p>                
+                <br><hr>
+        </form>
+    <% } %>
+</body>
+</html>
