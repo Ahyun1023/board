@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 탈퇴 페이지</title>
+</head>
+<body>
+    <h1>회원 탈퇴하려면 비밀번호를 입력해주세요.</h1>
+    <form action="/signOut" method="POST">
+        <input type="password" name="password">
+        <button type="submit">회원 탈퇴</button>
+    </form>
+    <form action="/main" method="POST">
+        <button type="submit" style="margin-top: 0.8%;">뒤로가기</button>
+    </form>
+</body>
+</html>
