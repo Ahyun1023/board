@@ -133,6 +133,29 @@ function go_post_update(res){
     })
 }
 
+const write_comment = (req, res)=>{
+    let comment = {
+        id: post_id,
+        name: req.session.user_name,
+        date: moment().format("YYYY-MM-DD HH:mm:ss"),
+        content: req.body.content
+    }
+
+    if(comment.content == ''){
+        alert('댓글을 입력해주세요');
+        refresh_post(req, res);
+        
+    } else{
+        connection.query('INSERT INTO comment SET ?;', comment, (err)=>{
+            if(err){
+                console.log(err);
+            } else{
+                refresh_post(req, res);
+            }
+        })
+    }    
+}
+
 function update_success(post ,req, res){
     connection.query('UPDATE post SET title = ?, content = ?, photo = ? WHERE id = ?;', [post.title, post.content, post.photo, post.id], (err)=>{
         if(err){
@@ -155,9 +178,26 @@ function update_success(post ,req, res){
     });
 }
 
+function refresh_post(req, res){
+    connection.query('SELECT * FROM post WHERE id = ?;', post_id, (err, results)=>{ 
+        if(err){
+            console.log(err);
+        } else{
+            connection.query('SELECT * FROM comment WHERE id = ? ORDER BY comment_id DESC;', post_id, (err, results2)=>{
+                if(err){
+                    console.log(err);
+                } else{
+                    res.render('post', {post: results, name: req.session.user_name, comment: results2, moment: moment});
+                }
+            })
+        }
+    })
+}
+
 module.exports.post_update_page = post_update_page;
 module.exports.go_main_page = go_main_page;
 module.exports.show_post = show_post;
 module.exports.write_post = write_post;
 module.exports.post_update = post_update;
 module.exports.delete_post = delete_post;
+module.exports.write_comment = write_comment;
