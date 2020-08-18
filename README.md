@@ -24,20 +24,9 @@
 16. session-file-store
 
 ## 실행 화면
-1.
 ![1](https://user-images.githubusercontent.com/43693054/85217889-0bc12c00-b3d0-11ea-8c98-bf776c82db08.PNG)
-
-2. 
 ![2](https://user-images.githubusercontent.com/43693054/85217900-22678300-b3d0-11ea-8c28-9fda690da53b.PNG)
-
-3. 
 ![3](https://user-images.githubusercontent.com/43693054/85218018-39f33b80-b3d1-11ea-8379-fb144740546a.PNG)
-
-4. 
 ![4](https://user-images.githubusercontent.com/43693054/85217914-37441680-b3d0-11ea-9551-4cdcef0378d3.PNG)
-
-5. 
 ![5](https://user-images.githubusercontent.com/43693054/85217906-31e6cc00-b3d0-11ea-8597-39cbf73dd95b.PNG)
-
-6. 
 ![6](https://user-images.githubusercontent.com/43693054/85217921-41661500-b3d0-11ea-9b8f-3c795f266537.PNG)
